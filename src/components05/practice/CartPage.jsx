@@ -36,10 +36,10 @@ const reducer = (state, action) => {
             }
         case ACTION_TYPE.delete:
             return {
-                ...state,
+                ...state, 
                 cart:{
                     count:state.cart.count-1,
-                    products:state.cart.products.filter(p=>p.id!==action.id)
+                    products:state.cart.products.filter(p=>p.id!==action.product.id)
                 }
             }
     }

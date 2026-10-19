@@ -1,12 +1,14 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ColorContext } from './ColorContext'
 
 const ColorBox = () => {
-    const { big, small } = useContext(ColorContext);
+    const { state } = useContext(ColorContext);
+    
     return (
         <div>
-            <div style={{width:'100px', height:'100px', background:big}}/>
-            <div style={{width:'50px', height:'50px', background:small}}/>
+            <div style={{width:'100px', height:'100px', 
+                background:state.big}}/>
+            <div style={{width:'50px', height:'50px', background:state.small}}/>
         </div>
     )
 }

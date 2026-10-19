@@ -1,19 +1,42 @@
 //변경 색상을 클릭하면 큰박스의 색이 바뀌고 오른쪽 클릭하면 작은박스의 색상변경
-import React from 'react'
+import React, { useReducer } from 'react'
 import ColorSelect from './ColorSelect'
 import ColorBox from './ColorBox'
 import '../../Style06.css'
-import ColorProvider from './ColorProvider'
+import { ColorContext } from './ColorContext'
+import ColorCircle from './ColorCircle'
 
+const initColor = {
+    big: 'red',
+    small: 'red'
+}
+
+const reducer = (state, action) => {
+    switch(action.type){
+        case 'big':
+            return {
+                ...state,
+                big: action.color
+            }
+        case 'small':
+            return {
+                ...state,
+                small: action.color
+            }
+    }
+}
 const ColorPage = () => {
+    const [state, dispatch] = useReducer(reducer, initColor);
     return (
-        <ColorProvider>
+        <ColorContext value={{state, dispatch}}>
             <div className='box'>
-                <ColorSelect/>
-                <hr/>
-                <ColorBox/>
+                <ColorSelect />
+                <hr />
+                <ColorBox />
+                <hr></hr>
+                <ColorCircle></ColorCircle>
             </div>
-        </ColorProvider>
+        </ColorContext>
     )
 }
 
